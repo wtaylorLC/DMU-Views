@@ -29,5 +29,9 @@ namespace DMUViews.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<DMUViews.Models.Movie> Movies { get; set; }
+
+        public System.Data.Entity.DbSet<DMUViews.Models.Genre> Genres { get; set; }
     }
 }
