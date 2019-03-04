@@ -19,7 +19,7 @@ namespace DMUViews.Controllers
         // GET: Movie
         public ActionResult AddMovies()
         {
-            return View();
+            return View(_entities.Movies.ToList());
         }
         [HttpPost]
         public ActionResult AddMovies(HttpPostedFileBase ImageVideoFile)
