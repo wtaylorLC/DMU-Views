@@ -14,14 +14,15 @@ namespace DMUViews.Controllers
 {
     public class MovieController : Controller
     {
+        private ApplicationDbContext _entities = new ApplicationDbContext();
 
         // GET: Movie
-        public ActionResult Index()
+        public ActionResult AddMovies()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult Index(HttpPostedFileBase ImageVideoFile)
+        public ActionResult AddMovies(HttpPostedFileBase ImageVideoFile)
         {
             if (ImageVideoFile != null)
             {

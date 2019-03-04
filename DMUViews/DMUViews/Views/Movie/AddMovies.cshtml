@@ -1,0 +1,64 @@
+﻿@model IEnumerable<DMUViews.Models.Movie>
+
+@{
+    ViewBag.Title = "AddMovies";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AddMovies</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MovieTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GenreName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateReleased)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImagePath)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrailerPath)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MovieTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GenreName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateReleased)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImagePath)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TrailerPath)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MovieId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MovieId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MovieId })
+        </td>
+    </tr>
+}
+
+</table>
