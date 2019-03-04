@@ -14,6 +14,7 @@ namespace DMUViews.Controllers
 {
     public class MovieController : Controller
     {
+
         // GET: Movie
         public ActionResult Index()
         {
@@ -22,21 +23,24 @@ namespace DMUViews.Controllers
         [HttpPost]
         public ActionResult Index(HttpPostedFileBase ImageVideoFile)
         {
-            if (ImageVideoFile!=null)
+            if (ImageVideoFile != null)
             {
                 string fileName = Path.GetFileName(ImageVideoFile.FileName);
-                if(ImageVideoFile.ContentLength< 104857600)
+                if (ImageVideoFile.ContentLength < 104857600)
                 {
-                    ImageVideoFile.SaveAs(Server.MapPath("/VideoFiles/"+fileName));
+                    ImageVideoFile.SaveAs(Server.MapPath("/ImageVideoFile/" + fileName));
                     string mainConn = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
                     SqlConnection sqlConn = new SqlConnection(mainConn);
-                    string sqlquery = "insert into [tblMovies] values @MovieTitle,@ImagePath,@TrailerPath,@DateReleased,@Description,@Genre";
-                    SqlCommand sqlComm = new SqlCommand(sqlquery, sqlConn);
+                    SqlCommand sqlComm = new SqlCommand("Sproc_AddMovie", sqlConn);
+                    sqlComm.CommandType = CommandType.StoredProcedure;
                     sqlConn.Open();
-                    sqlComm.Parameters.AddWithValue("@TrailerVid", fileName);
-                    sqlComm.Parameters.AddWithValue("@ImagePath", "/VideoFiles/" + fileName);
-                    sqlComm.Parameters.AddWithValue("@ImagePic", fileName);
-                    sqlComm.Parameters.AddWithValue("@ImagePath", "/VideoFiles/" + fileName);
+                    sqlComm.Parameters.AddWithValue("@MovieTitle", fileName);
+                    sqlComm.Parameters.AddWithValue("@GenreName", fileName);
+                    sqlComm.Parameters.AddWithValue("@Description", fileName);
+                    sqlComm.Parameters.AddWithValue("@DateReleased", Convert.ToDateTime(fileName));
+                    sqlComm.Parameters.AddWithValue("@ImagePath", "/ImageVideoFiles/" + fileName);
+                    sqlComm.Parameters.AddWithValue("@TrailerPath", "/ImageVideoFiles/" + fileName);
+                    fileName = Path.Combine(Server.MapPath("~/ImageVideoFiles/"), fileName);
                     sqlComm.ExecuteNonQuery();
                     sqlConn.Close();
                     ViewData["Message"] = "Record Saved Successfully !";
