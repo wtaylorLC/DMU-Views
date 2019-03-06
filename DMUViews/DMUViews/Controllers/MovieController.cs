@@ -17,12 +17,12 @@ namespace DMUViews.Controllers
         private ApplicationDbContext _entities = new ApplicationDbContext();
 
         // GET: Movie
-        public ActionResult AddMovies()
+        public ActionResult Index()
         {
             return View(_entities.Movies.ToList());
         }
         [HttpPost]
-        public ActionResult AddMovies(HttpPostedFileBase ImageVideoFile)
+        public ActionResult Index(HttpPostedFileBase ImageVideoFile)
         {
             if (ImageVideoFile != null)
             {
