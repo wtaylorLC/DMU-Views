@@ -1,11 +1,10 @@
 ﻿@model IEnumerable<DMUViews.Models.Movie>
 
 @{
-    ViewBag.Title = "AddMovies";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Index";
 }
 
-<h2>AddMovies</h2>
+<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -16,13 +15,13 @@
             @Html.DisplayNameFor(model => model.MovieTitle)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.GenreName)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.ImagePath)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.TrailerPath)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GenreName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Description)
@@ -39,6 +38,12 @@
             @Html.DisplayFor(modelItem => item.MovieTitle)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.ImagePath)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TrailerPath)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.GenreName)
         </td>
         <td>
@@ -46,12 +51,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DateReleased)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ImagePath)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TrailerPath)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.MovieId }) |
